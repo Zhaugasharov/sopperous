@@ -1,0 +1,337 @@
+.header{
+    position: relative;
+    width: 100%;
+/*    padding-bottom: 7px;
+    border-bottom: 1px solid #a4a4a4;*/
+    background: url("../img/glass.png");
+    color: white;
+    border: none;
+}
+
+.header>.header-body{
+    position: relative;
+    background: #3c8dbc;
+    padding: 10px 0px;
+}
+
+.card.glass{
+    background: #fff;
+    padding: 7px;
+}
+.card.glass>.card-header{
+    background: #ebebeb;
+}
+
+.card.glass>.card-body{
+    background: white;
+}
+
+body{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e5f5f9+0,cee5ed+65,add1db+100 */
+    background: #e5f5f9; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #f9f6f3 0%, #e3e8ed 65%, #d4edf2 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #f7f9f6 0%, #e3e8ed 65%, #d4edf2 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #fff4fb 0%, #e3e8ed 65%, #d4edf2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5f5f9', endColorstr='#add1db',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.min-w-100{
+    min-width: 100px;
+}
+
+.min-h-150{
+    min-width: 150px;
+}
+
+.collapser{
+    cursor: pointer;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.thumb-box{
+    position: relative;
+    display: table;
+    border: 1px solid black;
+    margin: 2px;
+    padding: 2px;
+    float: left;
+}
+.thumb-box>img{
+    position: relative;
+}
+.thumb-box.x150{
+    min-width: 150px;
+    min-height: 150px;
+}
+
+.thumb-box>.fa-times{
+    position: absolute;
+    top: 0;
+    right: 2px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1;
+}
+
+.thumb-box>.fa-times:hover{
+    color: #ff0000;
+}
+
+.thumb-box>.fa-check{
+    position: absolute;
+    top: 0;
+    left: 2px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1;
+}
+
+.thumb-box>.fa-check:hover{
+    color: #4cff6c;
+}
+
+.mb-1{
+    margin-bottom: 10px !important;
+}
+
+
+.menu-a a {
+    color: white;
+    margin-right: 20px;
+    text-transform: uppercase;
+}
+.menu-a {
+    padding-top: 5px;
+}
+.requirement-second-part img {
+    width: 100px;
+    height: 100px;
+object-fit: contain;
+}
+.requirement-second-part {
+    padding-left: 5px;
+}
+.clear-float {
+    clear: both;
+}
+.requirement-third-part {
+    padding-left: 20px;
+    width: 60%;
+}
+.requirement-third-part p {
+    line-height: 15px;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+.requirement-third-part .title {
+    font-weight: bold;
+    font-size: 18px;
+}
+.requirement-item {
+    background-color: #39a8e8;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 3px;
+    box-shadow: 1px 3px 6px -2px #565656;
+    height: 120px;
+    width: 100%;
+    color: #fff;
+}
+.requirement-third-part a {
+    text-decoration: underline;
+    font-weight: 600;
+}
+.requirement-fourth-part {
+    width: 20%;
+    color: #fff;
+    background-color: #5aa933;;
+    text-align: center;
+    border-radius: 2px;
+    padding: 3px;
+    float: right;
+}
+.requirement-fourth-part p,.requirement-fourth-part a {
+    margin-bottom: 5px;
+    line-height: 15px;
+}
+.requirement-fourth-part a {
+    font-weight: 600;
+}
+.requirement-doc {
+    background-color: white;
+    min-height: 67px;
+    padding-top: 13px;
+}
+#requirement_list {
+    height: 500px;
+    overflow-y: scroll;
+}
+.check-requirement {
+    height: 80px;
+}
+.progress-group .second-block,.progress-group .first-block  {
+    float: left;
+}
+.clear-float {
+    clear: both;
+}
+.progress-group .second-block {
+    width: 86%;
+}
+.progress-group .first-block {
+    width: 10%;
+    margin-right: 5px;
+}
+.requirement-progress .progress-number {
+    font-weight: 600;
+    font-size: 11px;
+}
+.requirement-progress .progress-text {
+    font-weight: bold;
+    font-size: 13px;
+}
+.requirement-progress {
+    margin-bottom: 15px;
+}
+.requirement-progress img {
+    width: 20px;
+    height: 20px;
+}
+.requirement-progress .progress-bar  {
+    background-color: #5B9B3B;
+}
+.pharmacy-list {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+.pharmacy-list a {
+    margin-right: 10px;
+    color: #232323;
+    font-weight: 600;
+}
+#requirement_document_default {
+    text-align: center;
+    color: #565656;
+    padding-top: 40px;
+}
+#requirement_document_default h2 {
+    font-size: 30px;
+}
+#requirement_document_default p input, #requirement_document_default p .fa {
+    margin-left: 20px;
+}
+#requirement_document_default p input {
+    margin-right: 8px;
+}
+.requirement-left-part a {
+    color: #565656;
+}
+.requirement-progress.active .progress-text, .requirement-progress.active .progress-number {
+    text-decoration: underline;
+    font-weight: bold;
+    color: red;
+}
+
+/*New styles*/
+
+.requirement-left-part{
+    border: 2px solid #3c8dbc;
+    border-radius: 10px;
+    margin-top: 55px;
+}
+
+.requirement-left-part .text-center{
+    margin-top: 15px;
+}
+
+.container .btn-primary{
+    background-color: #5B9B3B !important;
+}
+.float-left {
+float:left;
+}
+
+.btn-primary small{
+    color: #fff;
+}
+
+.image-item {
+    border: 1px solid #8a8a8a;
+    border-radius: 7px;
+    float: left;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    padding: 6px 10px;
+    width: 46%;
+}
+.image-item img {
+    width: 100%;
+    border-radius: 10px;
+    height: auto;
+}
+.main-image-item img {
+    border: 2px solid #db3839;
+}
+.icon.icon-times-blue-o {
+    background-image: url("/custom/image/times-blue-o.png");
+    height: 10px;
+    margin-left: 10px;
+    margin-top: 7px;
+    position: absolute;
+    width: 10px;
+}
+.icon {
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.change-main-image-icon {
+    color: #db3839;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 80px;
+    position: absolute;
+    text-decoration: underline;
+    margin-left: 8px;
+}
+.requirement-item .read-more {
+    color: white;
+}
+.modal-dialog {
+    top: 30%;
+}
+.image-count {
+    position: absolute;
+    color: red;
+    margin: 0px;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 80px;
+    margin-top: 70px;
+}
+.disable-item {
+    background-color: #8399A6 !important;
+}
+.disable-item .requirement-fourth-part {
+    background-color: #718794 !important;
+}
+.fa-delete {
+    font-size: 16px;
+    position: absolute;
+    right: 23px;
+    top: 27px;
+    z-index: 100;
+    color: red;
+    cursor: pointer;
+}
+.fa-bottom {
+    font-size: 15px;
+    right: 23px;
+    top: 27px;
+    z-index: 100;
+    color: #3c8dbc;
+    cursor: pointer;
+}
