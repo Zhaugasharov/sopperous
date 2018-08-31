@@ -15,27 +15,12 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text">Компаний</span>
-                    <span class="info-box-number">0</span>
+                    <span class="info-box-number">{{$company}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
         </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-file"></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">Просмотр новостей</span>
-                    <span class="info-box-number">0</span>
-                </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
         <!-- fix for small devices only -->
         <div class="clearfix visible-sm-block"></div>
 
@@ -45,7 +30,7 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text">Продано подписок</span>
-                    <span class="info-box-number">0</span>
+                    <span class="info-box-number">{{$subscribes}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -58,7 +43,7 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text">Пользователи</span>
-                    <span class="info-box-number">0</span>
+                    <span class="info-box-number">{{$users}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -101,27 +86,13 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text">Подтвержденных пользователей</span>
-                    <span class="info-box-number">0</span>
+                    <span class="info-box-number">{{$usersConfirm}}</span>
                     <span class="progress-description">
-                        0 не подтвердил регистрацию
+                        {{$usersConfirm-$users}} не подтвердил регистрацию
                   </span>
                 </div>
             </div>
-            <!-- /.info-box -->
-            <div class="info-box bg-green">
-                <span class="info-box-icon"><i class="fa fa-money"></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">Заработано всего:</span>
-                    <span class="info-box-number">0</span>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 50%"></div>
-                    </div>
-                  </span>
-                </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
+            {{--<!-- /.info-box -->
             <div class="info-box bg-red">
                 <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
 
@@ -132,13 +103,13 @@
                 </div>
                 <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box -->
+            <!-- /.info-box -->--}}
             <div class="info-box bg-aqua">
                 <span class="info-box-icon"><i class="fa fa-plus "></i></span>
 
                 <div class="info-box-content">
                     <span class="info-box-text">Всего аптек</span>
-                    <span class="info-box-number">0</span>
+                    <span class="info-box-number">{{$pharmacy}}</span>
 
                     <div class="progress">
                         <div class="progress-bar" style="width: 50%"></div>
