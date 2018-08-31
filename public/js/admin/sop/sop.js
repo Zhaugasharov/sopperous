@@ -15,9 +15,63 @@ var SopApp = {
         $(table).on('click', ".checkEmpty", function(){SopApp.actions.checkEmptyFiles($(this))});
         $(table).on('click', ".checkFull", function(){SopApp.actions.checkFullFiles($(this))});
         $(table).on('click', ".removeRow", function(){SopApp.actions.removeRow($(this))});
+        $(table).on('click', ".sort", function(){SopApp.actions.sortRow($(this))});
+        $("#savePosition").on('click',function(){SopApp.actions.savePosition()});
         $("#downloadSelected").click(function(){$("#downloadForm").submit()});
     },
     actions: {
+        sortRow: function (e) {
+            var ul = e.closest('ul');
+            var tr = e.closest('tr');
+            var i =  $(tr).find('i');
+            var parentId = ($(ul).attr('docId') == undefined)?0:$(ul).attr('docId');
+
+            if (parentId != 0 && $(".childFrom" + parentId).length != 0)
+                SopApp.actions.remover(parentId);
+
+            if($(i).hasClass('fa-minus')){
+                $(i).removeClass('fa-minus');
+                $(i).addClass('fa-plus');
+            }
+            $("#sopListSort").html("");
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': CSRF_TOKEN
+                },
+                type: "POST",
+                url: "/ajax/get-sop/"+parentId,
+                dataType: 'json',
+                data: {},
+                success: function(data){
+                    for(var i = 0; i<data.length; i++){
+                        var li = '<li class="bg-aqua" dataId="'+data[i].id+'"><p class="form-group pl-5">'+data[i].document_code+'</p></li>';
+                        $("#sopListSort").append(li);
+                    }
+                }
+            });
+            $("#modal-sort").modal('show');
+        },
+        savePosition: function(){
+            var ids = [];
+            var li = $("#sopListSort").find('li');
+            li.each(function(){
+                ids.push($(this).attr('dataId'));
+            });
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': CSRF_TOKEN
+                },
+                type: "POST",
+                url: "/admin/ajax/sort/sop",
+                dataType: 'json',
+                data: {sops: ids},
+                success: function(data){
+                    if($("#row"+ids[0]).length != 0) location.reload();
+                    $("#modal-sort").modal('hide');
+                }
+            });
+        }
+        ,
         checkAllFiles: function(e){
             var tr = $(e).closest('tr');
             if(e.prop('checked')){
@@ -204,7 +258,10 @@ var SopApp = {
                 success: function(data){
                     for(var i = 0; i<data.length; i++){
                         var tr = SopApp.view.getRow(data[i], color);
-                        $("#row"+docId).after(tr);
+                        if($(".childFrom"+docId).length == 0)
+                            $("#row"+docId).after(tr);
+                        else
+                            $(".childFrom"+docId+":last").after(tr);
                     }
                 }
             });
@@ -231,12 +288,12 @@ var SopApp = {
                             $(tds[i]+data.id).html(data[fields[i]]);
 
                         if(data.example_empty != '' && data.example_empty != null && data.example_empty != undefined)
-                            $("#doc_empty"+data.id).html('<a href="/download/example/'+data.example_empty+'"><i class="fa fa-file"></i></a>');
+                            $("#doc_empty"+data.id).html('<a target="_blank" href="/download/example/'+data.example_empty+'"><i class="fa fa-file"></i></a>');
                         else
                             $("#doc_empty"+data.id).html('');
 
                         if(data.example_full != '' && data.example_full != null && data.example_full != undefined)
-                            $("#doc_full"+data.id).html('<a href="/download/example/'+data.example_full+'"><i class="fa fa-file"></i></a>');
+                            $("#doc_full"+data.id).html('<a target="_blank" href="/download/example/'+data.example_full+'"><i class="fa fa-file"></i></a>');
                         else
                             $("#doc_full"+data.id).html('');
 
@@ -477,14 +534,14 @@ var SopApp = {
 
             if(data.example_empty != null && data.example_empty != ''){
                 tr += '<input name="exp_empty[]" value="'+data.example_empty+'" class="checkEmpty float-left" type="checkbox"/>';
-                tr += '<a href="/download/example/'+data.example_empty+'"><i class="fa fa-file"></i></a>';
+                tr += '<a target="_blank" href="/download/example/'+data.example_empty+'"><i class="fa fa-file"></i></a>';
             }
 
             tr += '</td>';
             tr += '<td class="text-center" id="doc_full'+data.id+'">';
             if(data.example_full != null && data.example_full != ''){
                 tr += '<input name="exp_full[]" value="'+data.example_full+'" class="checkFull float-left" type="checkbox"/>';
-                tr += '<a href="/download/example/'+data.example_full+'"><i class="fa fa-file"></i></a>';
+                tr += '<a target="_blank" href="/download/example/'+data.example_full+'"><i class="fa fa-file"></i></a>';
             }
 
             tr += '</td>';
@@ -500,7 +557,7 @@ var SopApp = {
                 tr += '<li class="pointer"><a class="thumbs" data-toggle="modal" data-target="#modal-thumb">Картинки</a></li>';
                 tr += '<li class="pointer"><a class="files" data-toggle="modal" data-target="#modal-files">Файлы</a></li>';
                 if(data.has_children == 1)
-                    tr += '<li><a href="#">Сортировать</a></li>';
+                    tr += '<li class="pointer"><a class="sort">Сортировать</a></li>';
 
                 tr += '<li class="divider"></li>';
                 tr += '<li class="bg-danger pointer removeRow" ><a >Удалить</a></li>';

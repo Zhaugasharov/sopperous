@@ -3,9 +3,14 @@
 @section('title')
     СОП
 @endsection
-
 @section('js')
+    <script src="/js/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="/js/jquery-ui.structure.min.css"></link>
     <script src="{{asset('js/admin/sop/sop.js')}}"></script>
+    <script>
+        $( "#sopListSort" ).sortable();
+        $( "#sopListSort" ).disableSelection();
+    </script>
 @endsection
 
 @section('content')
@@ -39,7 +44,7 @@
                                         <span class="fa fa-caret-down"></span></button>
                                     <ul class="dropdown-menu">
                                         <li class="pointer"><a action="create" class="editor" data-toggle="modal" data-target="#modal-default">Добавить пункт</a></li>
-                                        <li><a href="#">Сортировать</a></li>
+                                        <li class="pointer"><a class="sort">Сортировать</a></li>
                                     </ul>
                                 </div>
                             </th>
@@ -92,7 +97,7 @@
                                                 <li class="pointer"><a class="thumbs" data-toggle="modal" data-target="#modal-thumb">Картинки</a></li>
                                                 <li class="pointer"><a class="files" data-toggle="modal" data-target="#modal-files">Файлы</a></li>
                                                 @if($sop->has_children == 1)
-                                                    <li><a href="#">Сортировать</a></li>
+                                                    <li class="pointer"><a class="sort">Сортировать</a></li>
                                                 @endif
                                                 <li class="divider"></li>
                                                 <li class="bg-danger pointer removeRow" ><a >Удалить</a></li>
@@ -114,4 +119,5 @@
     @include('sop/editorModal')
     @include('sop/thumbModal')
     @include('sop/filesModal')
+    @include('sop/sortModal')
 @endsection

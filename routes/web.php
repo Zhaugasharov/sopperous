@@ -66,6 +66,7 @@ Route::group(['middleware' => ['web']], function () {
                     Route::post('delete/thumbs/{id}/{sopId}', 'Admin\AjaxAdminController@removeThumb');
                     Route::post('main/thumb/{id}/{sopId}', 'Admin\AjaxAdminController@removeThumb');
                     Route::post('remove/sop/{sopId}', 'Admin\AjaxAdminController@removeSop');
+                    Route::post('sort/sop', 'Admin\AjaxAdminController@sortSop');
                 });
 
                 Route::post('requirement/is_show', 'Admin\RequirementController@changeIsShow');

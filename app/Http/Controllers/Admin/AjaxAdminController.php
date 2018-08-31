@@ -53,4 +53,14 @@ class AjaxAdminController extends Controller
     public function removeSop($sopId){
         Sop::removeSop($sopId);
     }
+
+    public function sortSop(Request $request){
+        $sops = $request->get('sops');
+        foreach($sops as $k => $sop){
+            $sopModel = Sop::find($sop);
+            $sopModel->position = $k;
+            $sopModel->save();
+        }
+        return json_encode(['status' => 'success']);
+    }
 }
