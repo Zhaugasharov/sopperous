@@ -88,7 +88,7 @@
                     <span class="info-box-text">Подтвержденных пользователей</span>
                     <span class="info-box-number">{{$usersConfirm}}</span>
                     <span class="progress-description">
-                        {{$usersConfirm-$users}} не подтвердил регистрацию
+                        {{abs($usersConfirm-$users)}} не подтвердил регистрацию
                   </span>
                 </div>
             </div>
