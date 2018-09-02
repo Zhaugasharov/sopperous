@@ -73,7 +73,8 @@ class AjaxAdminController extends Controller
 
         if(!empty($sopModel[$type]) && Storage::exists('/example/'.$sopModel[$type]))
             Storage::delete('/example/'.$sopModel[$type]);
-
+        $sopModel[$type] = null;
+        $sopModel->save();
         return json_encode(['status' => 'success']);
     }
 }
