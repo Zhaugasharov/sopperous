@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Sop;
 use App\Models\SopThumb;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class AjaxAdminController extends Controller
@@ -61,6 +62,18 @@ class AjaxAdminController extends Controller
             $sopModel->position = $k;
             $sopModel->save();
         }
+        return json_encode(['status' => 'success']);
+    }
+
+    public function removeFile(Request $request){
+        $data = $request->all();
+        $sopModel = Sop::findOrFail($data['doc_id']);
+        $type = ['doc_empty' => 'example_empty', 'doc_full' => 'example_full'];
+        $type = $type[$data['type']];
+
+        if(!empty($sopModel[$type]) && Storage::exists('/example/'.$sopModel[$type]))
+            Storage::delete('/example/'.$sopModel[$type]);
+
         return json_encode(['status' => 'success']);
     }
 }

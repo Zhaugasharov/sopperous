@@ -18,8 +18,31 @@ var SopApp = {
         $(table).on('click', ".sort", function(){SopApp.actions.sortRow($(this))});
         $("#savePosition").on('click',function(){SopApp.actions.savePosition()});
         $("#downloadSelected").click(function(){$("#downloadForm").submit()});
+        $(".removeFile").click(function(){SopApp.actions.removeFile($(this));});
     },
     actions: {
+        removeFile: function(e){
+            var type = e.attr('type');
+            var docId = $("#document_id").val();
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': CSRF_TOKEN
+                },
+                type: "POST",
+                url: "/admin/ajax/remove/file",
+                dataType: 'json',
+                data: {type: type, doc_id: docId},
+                success: function(data){
+                    e.hide();
+                    $("#"+type).show();
+                    $("#"+type+docId).html("");
+                    var df = $("#doc_full"+docId).find('i').length;
+                    var de = $("#doc_empty"+docId).find('i').length;
+                    if(df == 0 && de == 0)
+                        $("#row"+docId).find('.checkAllRow').remove();
+                }
+            });
+        },
         sortRow: function (e) {
             var ul = e.closest('ul');
             var tr = e.closest('tr');
@@ -112,6 +135,22 @@ var SopApp = {
 
             $("#action").val(action);
             $("#document_id").val(docId);
+            $("#removeDocEmpty").hide();
+            $("#doc_empty").show();
+            $("#doc_empty").val('');
+            $("#removeDocFull").hide();
+            $("#doc_full").show();
+            $("#doc_full").val('');
+
+            if($("#doc_empty"+docId).find('i').length != 0){
+                $("#removeDocEmpty").show();
+                $("#doc_empty").hide();
+            }
+
+            if($("#doc_full"+docId).find('i').length != 0){
+                $("#removeDocFull").show();
+                $("#doc_full").hide();
+            }
 
             switch (action) {
                 case "create":
@@ -287,13 +326,29 @@ var SopApp = {
                         for(var i = 0; i<tds.length; i++)
                             $(tds[i]+data.id).html(data[fields[i]]);
 
-                        if(data.example_empty != '' && data.example_empty != null && data.example_empty != undefined)
-                            $("#doc_empty"+data.id).html('<a target="_blank" href="/download/example/'+data.example_empty+'"><i class="fa fa-file"></i></a>');
+                        if(data.example_empty != '' && data.example_empty != null && data.example_empty != undefined){
+                            if($("#action").val() == 'edit'){
+                                $("#removeDocEmpty").hide();
+                                $("#removeDocEmpty").show();
+                                $("#doc_empty").hide();
+                            }
+                            var html = '<input name="exp_empty[]" value="'+data.example_empty+'" class="checkEmpty float-left" type="checkbox">';
+                            html += '<a target="_blank" href="/download/example/'+data.example_empty+'"><i class="fa fa-file"></i></a>';
+                            $("#doc_empty"+data.id).html(html);
+                        }
                         else
                             $("#doc_empty"+data.id).html('');
 
-                        if(data.example_full != '' && data.example_full != null && data.example_full != undefined)
-                            $("#doc_full"+data.id).html('<a target="_blank" href="/download/example/'+data.example_full+'"><i class="fa fa-file"></i></a>');
+                        if(data.example_full != '' && data.example_full != null && data.example_full != undefined){
+                            if($("#action").val() == 'edit'){
+                                $("#doc_full").val('');
+                                $("#removeDocFull").show();
+                                $("#doc_full").hide();
+                            }
+                            var html = '<input name="exp_full[]" value="'+data.example_full+'" class="checkFull float-left" type="checkbox">';
+                            html += '<a target="_blank" href="/download/example/'+data.example_full+'"><i class="fa fa-file"></i></a>';
+                            $("#doc_full"+data.id).html(html);
+                        }
                         else
                             $("#doc_full"+data.id).html('');
 

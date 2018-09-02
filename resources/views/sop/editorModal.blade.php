@@ -24,10 +24,12 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="">Пустая форма</label>
+                        <p class="removeFile" id="removeDocEmpty" type="doc_empty"><i class="fa text-danger pointer fa-times">Удалить</i></p>
                         <input id="doc_empty" class="form-control" type="file"/>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="">Пример заполнения</label>
+                        <p class="removeFile" id="removeDocFull" type="doc_full"><i class="fa text-danger pointer fa-times">Удалить</i></p>
                         <input id="doc_full" class="form-control" type="file"/>
                     </div>
                 </div>
